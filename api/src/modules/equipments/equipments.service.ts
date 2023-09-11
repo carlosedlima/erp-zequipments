@@ -9,7 +9,14 @@ export class EquipmentsService {
 
   async create(createEquipmentDto: CreateEquipmentDto) {
     const equipmentCreated = await this.prismaService.equipment.create({
-      data: createEquipmentDto,
+      data: {
+        name: createEquipmentDto.name,
+        description: createEquipmentDto.description,
+        status: createEquipmentDto.status,
+        type: createEquipmentDto.type,
+        defectDescription: createEquipmentDto.defectDescription,
+        createdBy: createEquipmentDto.createdBy,
+      },
     })
     return equipmentCreated
   }
@@ -29,7 +36,14 @@ export class EquipmentsService {
   async update(id: string, updateEquipmentDto: UpdateEquipmentDto) {
     const equipmentUpdated = await this.prismaService.equipment.update({
       where: { id },
-      data: updateEquipmentDto,
+      data: {
+        name: updateEquipmentDto.name,
+        description: updateEquipmentDto.description,
+        status: updateEquipmentDto.status,
+        type: updateEquipmentDto.type,
+        defectDescription: updateEquipmentDto.defectDescription,
+        createdBy: updateEquipmentDto.createdBy,
+      },
     })
     return equipmentUpdated
   }
